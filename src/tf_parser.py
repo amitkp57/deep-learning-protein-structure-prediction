@@ -98,7 +98,7 @@ def read_protein(file_path, ss_file_path, max_length=512, min_length=64):
         evolutionary_ = batch[1]['evolutionary']
         mask_ = batch[1]['mask'][:, 0]
         primary_ = tf.cast(batch[1]['primary'][:, 0], tf.int32)
-        p_id = id_.numpy().decode("utf-8")[3:]
+        p_id = id_.numpy().decode("utf-8").split('#')[-1]
         if p_id not in id_to_ss:
             continue
         secondary_ = tf.cast(id_to_ss[p_id], tf.int32)  # tf.cast(batch[1]['secondary'][:, 0], tf.int32)
